@@ -266,15 +266,53 @@ Matrices of In-Context Heads are Two Towers for Metric Learning</title>
         <h2 class="title is-3">Hypothesis of in-context learning</h2>
         <div class="content has-text-justified">
           <p>
+          The proposed hypothesis is:
           In shallow layers, the label positions extract the demonstration features, and the last position extract 
-          features in all positions. In deep layers heads, the query and key matrices are two towers, learning the
-          similarity metric, between the last position and the features on the label positions. The value and output
-          matrices extract the label features on the label positions. The similarity between the input text and the 
-          demonstrations play very large roles.
+          features in all positions (X% input text + Y% near demonstrations + Z% far demonstrations). 
+          In deep layers' in-context heads, The value and output matrices extract the label features on the label 
+          positions, learning foo->foo and bar->bar.
+          The query and key matrices are two towers learning 
+          the similarity metric between the last position and the demonstration features on the label positions. 
+          When the similarity between the input text and the demonstration is large, the attention score on the 
+          corresponding label position is large, thus the label information is transformed much into the last position
+          , enhancing the probability of this label's token. Take <b>France : bar Cat : foo Dog : -> foo</b> as an example.
+          Since <b>Sim(X% dog + Y% cat + Z% France, cat) > Sim(X% dog + Y% cat + Z% France, France)</b>, foo is predicted.
+          </p>
+          <p>
+          We list the experimental results supporting this hypothesis. Please find the details in the paper.
+          </p>   
+          <p>
+          a) Previous studies find that label positions extract demonstrations' features.
+          </p>   
+          <p>
+          b) We find a few fooheads important for predicting "foo", and a few barheads important for predicting "bar".
+             When intervening the fooheads, the probability of "foo" decreases very much.  
+             When intervening the barheads, the probability of "bar" decreases very much.  
+             We name these heads "in-context heads".
+          </p>   
+          <p>
+          c) We design a logit minus score to evaluate the information storage in the weighted value-output vectors
+             on each position. We find that the "foo" positions in fooheads store much information about "foo", and
+             the "bar" positions in barheads store much information about "bar". So the mechanism of the in-context heads
+             is a copying mechanism, similar to the induction head.
+          </p>   
+          <p>
+          d) We compare the sentences <b>“S0 : bar S1 : bar S2 : foo S3 : foo S4 :” => foo</b> and 
+             <b>“S0 : foo S1 : foo S2 : bar S3 : bar S4 :” => bar</b>. 
+             The prediction changes from "foo" to "bar" when the labels are reversed.
+             For each position in the in-context heads, 
+             we compute the logit minus of the weighted value-output vectors, the attention scores, 
+             and the logit minus of the value-output vectors. 
+             We find that the changing of attention scores is the root reason causing the probability change from
+             "foo" to "bar". In comparison, the value-output matrices learn foo->foo and bar->bar in both cases.
+          </p>  
+          <p>
+          We also find mechanistic interpretability evidence of our hypothesis by projecting the vectors in unembedding
+          space, shown below.
           </p>
         </div>
         <div class="column is-centered has-text-centered">
-          <img src="./static/images/in-context.jpg"
+          <img src="./static/images/in-context-interpretability.jpg"
                class="interpolation-image"
                alt="Interpolate start reference image."/>
           <p>Mechanistic interpretability evidence in GPT2</p>
@@ -284,7 +322,6 @@ Matrices of In-Context Heads are Two Towers for Metric Learning</title>
     <!--/ Hypothesis of in-context learning -->
   </div>
 </section>
-
 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
