@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Neuron-Level Knowledge Attribution in Large Language Models">
+  <meta name="keywords" content="mechanistic interpretability, neuron attribution">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Neuron-Level Knowledge Attribution in Large Language Models</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://zepingyu0512.github.io/">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://zepingyu0512.github.io/arithmetic-mechanism.github.io/">
+            Understanding arithmetic mechanism in LLM (EMNLP 2024 main)
+          </a>
+          <a class="navbar-item" href="https://arxiv.org/abs/2402.02872">
+            Understanding in-context learning mechanism in LLM (EMNLP 2024 main)
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Neuron-Level Knowledge Attribution in Large Language Models</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">EMNLP 2024 (main)</span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://zepingyu0512.github.io/">Zeping Yu</a>,</span>
+            <span class="author-block">
+              <a href="https://research.manchester.ac.uk/en/persons/sophia.ananiadou">Sophia Ananiadou</a></span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">University of Manchester</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2312.12141"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2312.12141"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=okuSARaMiwA"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/zepingyu0512/neuron-attribution"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://drive.google.com/file/d/1WN4j4KnRCYFjV19cZTcz7V_QWbHiHjKQ/view?usp=sharing"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Slides</span>
+                  </a>
+              <span class="link-block">
+                <a href="https://zhuanlan.zhihu.com/p/721500187"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>Zhihu</span>
+                </a>
+              </span>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Identifying important neurons for final predictions is essential for understanding the mechanisms of 
+            large language models. Due to computational constraints, current attribution techniques struggle to 
+            operate at neuron level. In this paper, we propose a static method for pinpointing significant neurons. 
+            Compared to seven other methods, our approach demonstrates superior performance across three metrics. 
+            Additionally, since most static methods typically only identify "value neurons" directly contributing to 
+            the final prediction, we propose a method for identifying "query neurons" which activate these 
+            "value neurons". Finally, we apply our methods to analyze six types of knowledge across both attention
+            and feed-forward network (FFN) layers. Our method and analysis are helpful for understanding the mechanisms
+            of knowledge storage and set the stage for future research in knowledge editing.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/embed/okuSARaMiwA"
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="columns is-centered has-text-centered">
+    <div class="container is-max-desktop"">
+    <!-- Introduction. -->
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Introduction</h2>
+        <div class="content has-text-justified">
+          <p>
+            Identifying the important neurons in LLMs is significant for understanding the mechanisms. 
+            Traditional attribution methods such as integrated gradients and causal mediation analysis 
+            are hard to be utilized at neuron level due to the computational cost. Take Llama-7B as an example.
+            There are 32 layers, where each layer has 4,096 attention neurons and 11,008 FFN neurons. Therefore, 
+            it is essential to find a static method to locate the important neurons.
+          </p>
+          <p>
+            In LLMs, there are "value neurons" contributing to the final prediction directly, as they contain 
+            the important information about the final prediction. There are also "query neurons" contributing 
+            by activating the "value neurons". The "query neurons" may not contain information about the final prediction. 
+            In this paper, we first compute the log probability increase of each neuron to locate the "value neurons" 
+            in deep FFN layers and deep attention layers. Then we calculate the inner product between the attention 
+            "value neurons" and each shallow FFN neuron to locate the "query neurons" in shallow FFN layers.
+          </p>
+          <p>
+            When intervening the top200 "attention value neurons" and top100 "FFN value neurons" for each sentence, the
+            MRR and probability decreases 96.3%/99.2% in GPT2, and 96.9%/99.6% in Llama. When intervening top1000 
+            shallow neurons for each sentence, both MRR and probability drops very much (92%/95% in GPT2 and 87%/95% in
+            Llama). These results prove that our method can identify the important neurons for the final prediction.
+          </p>
+          <p>
+            The neuron-level information flow is shown in the figure below. The "query FFN neurons" in shallow layers
+            are activated and added into each position's residual stream. Then these "query neurons" activate the
+            "attention value neurons" in deep attention layers and transform into the last token, then activate 
+            the "FFN value neurons" in deep FFN layers. 
+          </p>
+        </div>
+        <div class="column is-centered has-text-centered">
+          <img src="./static/images/neuron-mechanism.jpg"
+               class="interpolation-image"
+               alt="Interpolate start reference image."/>
+          <p>Neuron-Level Information Flow</p>
+        </div>
+        <br/>
+      </div>
+    </div>
+    <!--/ Introduction. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Mechanistic interpretability evidence -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3">Mechanistic interpretability of identified neurons</h2>
+        <div class="content has-text-justified">
+          <p>
+            We aim to analyze the interpretability of the identified important neurons by 
+            projecting the neurons into unembedding space, which is a commonly used method in mechanistic interpretability. 
+            Please note that most "query neurons" are hidden-interpretable, which becomes interpretable after transformation
+            by the attention heads. About hidden-interpretable neurons, please refer to this EMNLP 2024 paper for details: 
+            Interpreting Arithmetic Mechanism in Large Language Models through Comparative Neuron Analysis.
+          </p>
+          <p>  
+            The case is: <b>['{start}', 'Tim', 'Dun', 'can', 'plays', 'the', 'sport', 'of'] => "basketball"</b>
+          </p>
+          <p>  
+            Firstly, the 3rd position ("can") activates the query FFN neuron FFN_5_5005 (layer 5, neuron 5005). 
+            The top tokens of FFN_5_5005 (hidden-interpretable) is 
+            <b>['basketball', 'Basketball', 'NBA', 'Jazz', 'asketball', 'jazz', 'Bird', 'basket', 'court', 'courts']</b>.
+          </p>
+          <p>  
+            It is very possible that in early attention layers position 3 ("can") has captured the features from 
+            position 1 ("Tim") and position 2 ("Dun"), but we do not verify this in our paper. 
+          </p>
+          <p>    
+            Secondly, many query neurons like FFN_5_5005 are activated. Then these neurons activate many value attention neurons like 
+            ATTN_15_15_112 (layer 15, head 15, neuron 112), whose top tokens in unembedding space is 
+            <b>['basketball', 'Basketball', 'asketball', 'NBA', 'basket', '球', 'Mount', 'hos', 'wings', 'ugby']</b>.
+            The identified attention value neurons work both as "value" and "query".
+          </p>
+          <p> 
+            Lastly, these attention neurons activate 
+            the FFN value neurons such as FFN_22_1674: 
+            <b>['Jazz', 'jazz', 'basketball', 'rock', 'Basketball', 'Rock', 'hockey', 'Hockey', 'Pop', 'rugby']</b>.
+            Obviously, this FFN neuron is a polysemantic neuron, which is also related to "music" (see "jazz" and "rock"). 
+            Although the superposition phenomenon exists, our method can successfully identify it. 
+          </p>
+          <p> 
+            To test more cases, please use our <a rel="license"
+            href="https://github.com/zepingyu0512/neuron-attribution/blob/main/Llama_view_knowledge.ipynb">code.</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Mechanistic interpretability evidence -->
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{yu2024neuron,
+  author    = {Yu, Zeping and Ananiadou, Sophia},
+  title     = {Neuron-Level Knowledge Attribution in Large Language Models},
+  journal   = {EMNLP},
+  year      = {2024},
+}</code></pre>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link" href="https://github.com/zepingyu0512" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-6">
+        <div class="content">
+          <p>
+            This website is created using <a rel="license"
+                                              href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>
+            under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
