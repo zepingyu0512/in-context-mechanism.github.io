@@ -3,10 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="description"
-        content="Neuron-Level Knowledge Attribution in Large Language Models">
-  <meta name="keywords" content="mechanistic interpretability, neuron attribution">
+        content="How do Large Language Models Learn In-Context? Query and Key Matrices of In-Context Heads are Two Towers for Metric Learning">
+  <meta name="keywords" content="mechanistic interpretability, in-context learning, large language models">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Neuron-Level Knowledge Attribution in Large Language Models</title>
+  <title>How do Large Language Models Learn In-Context? Query and Key
+Matrices of In-Context Heads are Two Towers for Metric Learning</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
@@ -63,11 +64,11 @@
           More Research
         </a>
         <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://zepingyu0512.github.io/neuron-attribution.github.io/">
+            Neuron-level knowledge attribution in LLM (EMNLP 2024 main)
+          </a>
           <a class="navbar-item" href="https://zepingyu0512.github.io/arithmetic-mechanism.github.io/">
             Understanding arithmetic mechanism in LLM (EMNLP 2024 main)
-          </a>
-          <a class="navbar-item" href="https://arxiv.org/abs/2402.02872">
-            Understanding in-context learning mechanism in LLM (EMNLP 2024 main)
           </a>
         </div>
       </div>
@@ -81,7 +82,8 @@
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Neuron-Level Knowledge Attribution in Large Language Models</h1>
+          <h1 class="title is-1 publication-title">How do Large Language Models Learn In-Context? 
+            Query and Key Matrices of In-Context Heads are Two Towers for Metric Learning</h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">EMNLP 2024 (main)</span>
           </div>
@@ -99,7 +101,7 @@
             <div class="publication-links">
               <!-- PDF Link. -->
               <span class="link-block">
-                <a href="https://arxiv.org/pdf/2312.12141"
+                <a href="https://arxiv.org/pdf/2402.02872"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fas fa-file-pdf"></i>
@@ -108,7 +110,7 @@
                 </a>
               </span>
               <span class="link-block">
-                <a href="https://arxiv.org/abs/2312.12141"
+                <a href="https://arxiv.org/abs/2402.02872"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="ai ai-arxiv"></i>
@@ -118,7 +120,7 @@
               </span>
               <!-- Video Link. -->
               <span class="link-block">
-                <a href="https://www.youtube.com/watch?v=okuSARaMiwA"
+                <a href=""
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-youtube"></i>
@@ -128,7 +130,7 @@
               </span>
               <!-- Code Link. -->
               <span class="link-block">
-                <a href="https://github.com/zepingyu0512/neuron-attribution"
+                <a href="https://github.com/zepingyu0512/in-context-mechanism"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="fab fa-github"></i>
@@ -138,7 +140,7 @@
               </span>
               <!-- Dataset Link. -->
               <span class="link-block">
-                <a href="https://drive.google.com/file/d/1WN4j4KnRCYFjV19cZTcz7V_QWbHiHjKQ/view?usp=sharing"
+                <a href=""
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="far fa-images"></i>
@@ -146,7 +148,7 @@
                   <span>Slides</span>
                   </a>
               <span class="link-block">
-                <a href="https://zhuanlan.zhihu.com/p/721500187"
+                <a href="https://zhuanlan.zhihu.com/p/781421497"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="ai ai-arxiv"></i>
@@ -171,15 +173,33 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Identifying important neurons for final predictions is essential for understanding the mechanisms of 
-            large language models. Due to computational constraints, current attribution techniques struggle to 
-            operate at neuron level. In this paper, we propose a static method for pinpointing significant neurons. 
-            Compared to seven other methods, our approach demonstrates superior performance across three metrics. 
-            Additionally, since most static methods typically only identify "value neurons" directly contributing to 
-            the final prediction, we propose a method for identifying "query neurons" which activate these 
-            "value neurons". Finally, we apply our methods to analyze six types of knowledge across both attention
-            and feed-forward network (FFN) layers. Our method and analysis are helpful for understanding the mechanisms
-            of knowledge storage and set the stage for future research in knowledge editing.
+            We investigate the mechanism of in-context
+            learning (ICL) on sentence classification
+            tasks with semantically-unrelated labels
+            ("foo"/"bar"). We find intervening in only 1%
+            heads (named "in-context heads") significantly
+            affects ICL accuracy from 87.6% to 24.4%.
+            To understand this phenomenon, we analyze
+            the value-output vectors in these heads and
+            discover that the vectors at each label position
+            contain substantial information about the
+            corresponding labels. Furthermore, we observe
+            that the prediction shift from "foo" to "bar" is
+            due to the respective reduction and increase in
+            these heads’ attention scores at "foo" and "bar"
+            positions. Therefore, we propose a hypothesis
+            for ICL: in in-context heads, the value-output
+            matrices extract label features, while the
+            query-key matrices compute the similarity
+            between the features at the last position and
+            those at each label position. The query and
+            key matrices can be considered as two towers
+            that learn the similarity metric between the
+            last position’s features and each demonstration
+            at label positions. Using this hypothesis, we
+            explain the majority label bias and recency
+            bias in ICL and propose two methods to reduce
+            these biases by 22% and 17%, respectively.
           </p>
         </div>
       </div>
@@ -191,7 +211,7 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">Video</h2>
         <div class="publication-video">
-          <iframe src="https://www.youtube.com/embed/okuSARaMiwA"
+          <iframe src=""
                   frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
       </div>
@@ -209,38 +229,23 @@
         <h2 class="title is-3">Introduction</h2>
         <div class="content has-text-justified">
           <p>
-            Identifying the important neurons in LLMs is significant for understanding the mechanisms. 
-            Traditional attribution methods such as integrated gradients and causal mediation analysis 
-            are hard to be utilized at neuron level due to the computational cost. Take Llama-7B as an example.
-            There are 32 layers, where each layer has 4,096 attention neurons and 11,008 FFN neurons. Therefore, 
-            it is essential to find a static method to locate the important neurons.
+
           </p>
           <p>
-            In LLMs, there are "value neurons" contributing to the final prediction directly, as they contain 
-            the important information about the final prediction. There are also "query neurons" contributing 
-            by activating the "value neurons". The "query neurons" may not contain information about the final prediction. 
-            In this paper, we first compute the log probability increase of each neuron to locate the "value neurons" 
-            in deep FFN layers and deep attention layers. Then we calculate the inner product between the attention 
-            "value neurons" and each shallow FFN neuron to locate the "query neurons" in shallow FFN layers.
+
           </p>
           <p>
-            When intervening the top200 "attention value neurons" and top100 "FFN value neurons" for each sentence, the
-            MRR and probability decreases 96.3%/99.2% in GPT2, and 96.9%/99.6% in Llama. When intervening top1000 
-            shallow neurons for each sentence, both MRR and probability drops very much (92%/95% in GPT2 and 87%/95% in
-            Llama). These results prove that our method can identify the important neurons for the final prediction.
+
           </p>
           <p>
-            The neuron-level information flow is shown in the figure below. The "query FFN neurons" in shallow layers
-            are activated and added into each position's residual stream. Then these "query neurons" activate the
-            "attention value neurons" in deep attention layers and transform into the last token, then activate 
-            the "FFN value neurons" in deep FFN layers. 
+
           </p>
         </div>
         <div class="column is-centered has-text-centered">
           <img src="./static/images/neuron-mechanism.jpg"
                class="interpolation-image"
                alt="Interpolate start reference image."/>
-          <p>Neuron-Level Information Flow</p>
+          <p>Hypothesis of In-context Learning</p>
         </div>
         <br/>
       </div>
