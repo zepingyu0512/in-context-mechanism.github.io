@@ -226,19 +226,23 @@ Matrices of In-Context Heads are Two Towers for Metric Learning</title>
     <!-- Introduction. -->
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Introduction</h2>
+        <h2 class="title is-3">Background</h2>
         <div class="content has-text-justified">
           <p>
-
+          In-context learning (ICL) is an emergent ability of large language models. By using some demonstration-label
+          pairs as prompts, ICL performs well without updating parameters on many tasks. Because the mechanism of ICL 
+          remains unclear, many studies focus on understanding how ICL works. Although previous studies are important 
+          for understanding ICL, the exact mechanism of ICL remains a mystery for several reasons. 
+          Firstly, the information flow is typically observed as an average across each head, but understanding ICL 
+          requires exploring the precise importance of each head. Secondly, each head has a query matrix, key matrix, 
+          value matrix, and output matrix; it is essential to study the role of each matrix in detail. Lastly, ICL is
+          plagued by issues such as majority label bias and recency bias, and how to explain and mitigate these
+          biases has not yet been thoroughly investigated.
           </p>
           <p>
-
-          </p>
-          <p>
-
-          </p>
-          <p>
-
+          In this paper, we propose a hypothesis of in-context learning. We propose a hypothesis of in-context learning, 
+          and design experiments to understand the roles of different modules. 
+          We understand and reduce the majority label bias and recency bias of in-context learning.
           </p>
         </div>
         <div class="column is-centered has-text-centered">
@@ -256,44 +260,38 @@ Matrices of In-Context Heads are Two Towers for Metric Learning</title>
 
 <section class="section">
   <div class="container is-max-desktop">
-    <!-- Mechanistic interpretability evidence -->
+    <!-- Hypothesis of in-context learning -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Mechanistic interpretability of identified neurons</h2>
+        <h2 class="title is-3">Hypothesis of in-context learning</h2>
         <div class="content has-text-justified">
           <p>
+          In shallow layers, the label positions extract the demonstration features, and the last position extract 
+          features in all positions. In deep layers heads, the query and key matrices are two towers, learning the
+          similarity metric, between the last position and the features on the label positions. The value and output
+          matrices extract the label features on the label positions. The similarity between the input text and the 
+          demonstrations play very large roles.
           </p>
-          <p>  
-          </p>
-          <p>  
-
-          </p>
-          <p>  
-
-          </p>
-          <p>    
-
-          </p>
-          <p> 
-
-          </p>
-          <p> 
-
-          </p>
+        </div>
+        <div class="column is-centered has-text-centered">
+          <img src="./static/images/in-context.jpg"
+               class="interpolation-image"
+               alt="Interpolate start reference image."/>
+          <p>Mechanistic interpretability evidence in GPT2</p>
         </div>
       </div>
     </div>
-    <!--/ Mechanistic interpretability evidence -->
+    <!--/ Hypothesis of in-context learning -->
   </div>
 </section>
+
 
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
     <pre><code>@article{yu2024how,
   author    = {Yu, Zeping and Ananiadou, Sophia},
-  title     = {How do Large Language Models Learn In-Context? Query and Key
-Matrices of In-Context Heads are Two Towers for Metric Learning},
+  title     = {How do Large Language Models Learn In-Context? Query and Key Matrices of In-Context Heads are Two Towers for Metric Learning},
   journal   = {EMNLP},
   year      = {2024},
 }</code></pre>
