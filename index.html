@@ -226,7 +226,7 @@ Matrices of In-Context Heads are Two Towers for Metric Learning</title>
     <!-- Introduction. -->
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <h2 class="title is-3">Background</h2>
+        <h2 class="title is-3">Introduction</h2>
         <div class="content has-text-justified">
           <p>
           In-context learning (ICL) is an emergent ability of large language models. By using some demonstration-label
@@ -240,9 +240,9 @@ Matrices of In-Context Heads are Two Towers for Metric Learning</title>
           biases has not yet been thoroughly investigated.
           </p>
           <p>
-          In this paper, we propose a hypothesis of in-context learning. We propose a hypothesis of in-context learning, 
-          and design experiments to understand the roles of different modules. 
-          We understand and reduce the majority label bias and recency bias of in-context learning.
+          Contributions: In this paper, we <b>propose a hypothesis of in-context learning</b>, 
+          and design experiments to <b>understand the roles of different modules (query, key, value, output matrices)</b>. 
+          We understand and reduce the <b>majority label bias and recency bias</b> of in-context learning.
           </p>
         </div>
         <div class="column is-centered has-text-centered">
@@ -269,14 +269,14 @@ Matrices of In-Context Heads are Two Towers for Metric Learning</title>
           The proposed hypothesis is:
           In shallow layers, the label positions extract the demonstration features, and the last position extract 
           features in all positions (X% input text + Y% near demonstrations + Z% far demonstrations). 
-          In deep layers' in-context heads, The value and output matrices extract the label features on the label 
+          In deep layers' in-context heads, the value-output matrices extract the label features on the label 
           positions, learning foo->foo and bar->bar.
           The query and key matrices are two towers learning 
           the similarity metric between the last position and the demonstration features on the label positions. 
           When the similarity between the input text and the demonstration is large, the attention score on the 
           corresponding label position is large, thus the label information is transformed much into the last position
           , enhancing the probability of this label's token. Take <b>France : bar Cat : foo Dog : -> foo</b> as an example.
-          Since <b>Sim(X% dog + Y% cat + Z% France, cat) > Sim(X% dog + Y% cat + Z% France, France)</b>, foo is predicted.
+          <b>Sim(X% Dog + Y% Cat + Z% France, cat) > Sim(X% Dog + Y% Cat + Z% France, France)</b>, so foo is predicted.
           </p>
           <p>
           We list the experimental results supporting this hypothesis. Please find the details in the paper.
@@ -285,15 +285,15 @@ Matrices of In-Context Heads are Two Towers for Metric Learning</title>
           a) Previous studies find that label positions extract demonstrations' features.
           </p>   
           <p>
-          b) We find a few fooheads important for predicting "foo", and a few barheads important for predicting "bar".
+          b) We find a few <b>fooheads</b> important for predicting "foo", and a few <b>barheads</b> important for predicting "bar".
              When intervening the fooheads, the probability of "foo" decreases very much.  
              When intervening the barheads, the probability of "bar" decreases very much.  
-             We name these heads "in-context heads".
+             We name these heads <b>"in-context heads"</b>.
           </p>   
           <p>
           c) We design a logit minus score to evaluate the information storage in the weighted value-output vectors
-             on each position. We find that the "foo" positions in fooheads store much information about "foo", and
-             the "bar" positions in barheads store much information about "bar". So the mechanism of the in-context heads
+             on each position. We find that the <b>"foo" positions in fooheads</b> store much information about "foo", and
+             the <b>"bar" positions in barheads</b> store much information about "bar". So the mechanism of the in-context heads
              is a copying mechanism, similar to the induction head.
           </p>   
           <p>
@@ -303,7 +303,7 @@ Matrices of In-Context Heads are Two Towers for Metric Learning</title>
              For each position in the in-context heads, 
              we compute the logit minus of the weighted value-output vectors, the attention scores, 
              and the logit minus of the value-output vectors. 
-             We find that the changing of attention scores is the root reason causing the probability change from
+             We find that the <b>changing of attention scores is the root reason causing the probability change</b> from
              "foo" to "bar". In comparison, the value-output matrices learn foo->foo and bar->bar in both cases.
           </p>  
           <p>
